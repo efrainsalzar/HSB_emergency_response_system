@@ -1,17 +1,19 @@
 const express = require('express');
-const db = require('./config/db');
-
-// app.js
+const usuarioRoutes = require('./routes/UsuarioRoute');
+require('dotenv').config();
+require('./config/db');
 
 const app = express();
 
 // Middlewares
 app.use(express.json());
 
-// Test route
+// Ruta de prueba
 app.get('/', (req, res) => {
     res.send('API is running');
 });
 
-module.exports = app;
+// Rutas de usuario
+app.use('/api/usuarios', usuarioRoutes);
 
+module.exports = app;
